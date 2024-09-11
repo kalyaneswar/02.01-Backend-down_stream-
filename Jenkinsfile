@@ -57,6 +57,10 @@ pipeline {
                         sh """
                             hostname
                             pwd
+                            ls -lrt
+                            curl -0 http://nexus.kalyaneswar.online:8081/repository/backend/com/expense/backend/12.1.0/backend-12.1.0.zip
+                            pwd
+                            ls -lrt
                             scp -i ~/.ssh/${SSH_KEY_ID} backend-${params.appVersion}.zip ${SSH_USER}@${TARGET_SERVER}
                             hostname
                         """
