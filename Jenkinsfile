@@ -68,8 +68,8 @@ pipeline {
 
                             ssh -i ~/.ssh/${SSH_KEY_ID} ${SSH_USER}@${TARGET_SERVER} 
                             pwd
-                            cd ~/deploy
-                            unzip -o backend-${params.appVersion}.zip -d /opt/app/
+                            #cd ~/deploy
+                            #unzip -o backend-${params.appVersion}.zip -d /opt/app/
                             # Add any other deployment commands you need here
                             EOF
                         """
