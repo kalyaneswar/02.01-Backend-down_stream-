@@ -65,7 +65,8 @@ pipeline {
                         // Deploy the artifact on the target server
                         sh """
                             pwd
-                            ssh -i ~/.ssh/${SSH_KEY_ID} ${SSH_USER}@${TARGET_SERVER} 
+                            
+                            ssh -i /root/.ssh/${SSH_KEY_ID} ${SSH_USER}@${TARGET_SERVER} 
                             pwd
                             cd ~/deploy
                             unzip -o backend-${params.appVersion}.zip -d /opt/app/
