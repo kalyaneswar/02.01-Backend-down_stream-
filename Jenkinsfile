@@ -71,7 +71,7 @@ pipeline {
                             #cd ~/deploy
                             #unzip -o backend-${params.appVersion}.zip -d /opt/app/
                             # Add any other deployment commands you need here
-                            EOF
+                            
                         """
                     }
                 }
