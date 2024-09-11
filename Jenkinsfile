@@ -27,36 +27,38 @@ pipeline {
     }
 
     stages {
-            stage('Download Artifact from Nexus') {
-                steps {
-                    script {
-                        echo "Downloading Artifacts from Nexus"
-                        def artifactFile = "backend-${params.appVersion}.zip"
+            // stage('Download Artifact from Nexus') {
+            //     steps {
+            //         script {
+            //             echo "Downloading Artifacts from Nexus"
+            //             def artifactFile = "backend-${params.appVersion}.zip"
 
-                        nexusArtifactDownloader(
-                            nexusVersion: 'nexus3',
-                            protocol: 'http',
-                            nexusUrl: "${NEXUS_URL}",
-                            groupId: 'com.expense',
-                            artifactId: "${ARTIFACT_ID}",
-                            version: "${params.appVersion}",
-                            repository: "${REPO_NAME}",
-                            credentialsId: 'nexus-auth',
-                            target: artifactFile
-                        )
+            //             nexusArtifactDownloader(
+            //                 nexusVersion: 'nexus3',
+            //                 protocol: 'http',
+            //                 nexusUrl: "${NEXUS_URL}",
+            //                 groupId: 'com.expense',
+            //                 artifactId: "${ARTIFACT_ID}",
+            //                 version: "${params.appVersion}",
+            //                 repository: "${REPO_NAME}",
+            //                 credentialsId: 'nexus-auth',
+            //                 target: artifactFile
+            //             )
 
-                        echo "Downloaded artifact: ${artifactFile}"
-                    }
-                }
-            }
+            //             echo "Downloaded artifact: ${artifactFile}"
+            //         }
+            //     }
+            // }
 
             stage('Deploy to Server') {
                 steps {
                     script {
                         // Transfer artifact to the target server
                         sh """
+                            hostname
                             pwd
-                            scp -i ~/.ssh/${SSH_KEY_ID} backend-${params.appVersion}.zip ${SSH_USER}@${TARGET_SERVER}:~/deploy/
+                            scp -i ~/.ssh/${SSH_KEY_ID} backend-${params.appVersion}.zip ${SSH_USER}@${TARGET_SERVER}
+                            hostname
                         """
                         
                         // Deploy the artifact on the target server
