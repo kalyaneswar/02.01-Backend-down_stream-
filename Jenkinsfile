@@ -19,7 +19,7 @@ pipeline {
         JENKINS_URL = 'http://jenkins.kalyaneswar.online:8080/'
         NEXUS_URL = 'nexus.kalyaneswar.online:8081'
         TARGET_SERVER = '54.174.150.47'
-        SSH_USER = 'root'
+        SSH_USER = 'ec2-user'
         SSH_KEY_ID = 'id_rsa'
         ARTIFACT_ID = 'backend'
         ARTIFACT_EXTENSION = 'zip'
@@ -65,8 +65,8 @@ pipeline {
                         // Deploy the artifact on the target server
                         sh """
                             pwd
-                            
-                            ssh -i /root/.ssh/${SSH_KEY_ID} ${SSH_USER}@${TARGET_SERVER} 
+
+                            ssh -i ~/.ssh/${SSH_KEY_ID} ${SSH_USER}@${TARGET_SERVER} 
                             pwd
                             cd ~/deploy
                             unzip -o backend-${params.appVersion}.zip -d /opt/app/
