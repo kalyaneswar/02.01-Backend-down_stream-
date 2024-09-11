@@ -3,7 +3,7 @@
 
 pipeline {
     agent {
-        label 'AGENT-2' // Use a different agent if needed for CD
+        label 'AGENT-1' // Use a different agent if needed for CD
     }
     options {
         timeout(time: 30, unit: 'MINUTES')
